@@ -13,7 +13,7 @@ private class BundleFinder {}
 extension Foundation.Bundle {
     /// Returns the resource bundle associated with the current Swift module.
     static var current: Bundle = {
-        let bundleName = "FMPhotoPicker_FMPhotoPicker"
+        let bundleName = "FMPhotoPicker"
 
         let candidates = [
             // Bundle should be present here when the package is linked into an App.
