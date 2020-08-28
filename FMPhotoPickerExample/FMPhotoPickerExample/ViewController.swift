@@ -115,7 +115,9 @@ class ViewController: UIViewController, FMPhotoPickerViewControllerDelegate, FMI
     @IBAction func openEditor(_ sender: Any) {
         let vc = FMImageEditorViewController(config: config(), sourceImage: previewImageView.image!)
         vc.delegate = self
-        
+        if #available(iOS 13.0, *) {
+            vc.modalPresentationStyle = .automatic
+        }
         self.present(vc, animated: true)
     }
 }
