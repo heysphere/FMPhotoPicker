@@ -238,6 +238,13 @@ public class FMImageEditorViewController: UIViewController {
 
         filterMenuButton.isHidden = config.availableFilters == nil
         cropMenuButton.isHidden = config.availableCrops == nil
+
+        if config.availableFilters == nil && config.availableCrops != nil {
+            cropMenuButton.tintColor = kSelectedColor
+            cropMenuButton.setTitleColor(kSelectedColor, for: .normal)
+            filterMenuButton.tintColor = kBlackColor
+            filterMenuButton.setTitleColor(kBlackColor, for: .normal)
+        }
     }
 
     public override func viewDidAppear(_ animated: Bool) {
