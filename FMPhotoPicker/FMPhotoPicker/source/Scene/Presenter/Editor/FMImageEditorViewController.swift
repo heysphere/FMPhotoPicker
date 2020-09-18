@@ -99,6 +99,7 @@ public class FMImageEditorViewController: UIViewController {
     private var selectedCrop: FMCroppable
 
     private var config: FMPhotoPickerConfig
+    private var didLayout = false
 
     // MARK: - Init
 
@@ -247,13 +248,6 @@ public class FMImageEditorViewController: UIViewController {
         }
     }
 
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if config.availableCrops != nil && config.availableFilters == nil {
-            openCropsMenu()
-        }
-    }
-
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         cropView.frame = view.frame
@@ -262,6 +256,10 @@ public class FMImageEditorViewController: UIViewController {
             bottomMenuContainerBottomConstraint.constant = -view.safeAreaInsets.bottom
             menuContainerTopConstraint.constant = view.safeAreaInsets.top
         }
+        if config.availableCrops != nil && config.availableFilters == nil && didLayout == false {
+            UIView.performWithoutAnimation(openCropsMenu)
+        }
+        didLayout = true
     }
 
     // MARK: - IBActions
@@ -335,6 +333,7 @@ public class FMImageEditorViewController: UIViewController {
         filterMenuButton.setTitleColor(kBlackColor, for: .normal)
 
         showAnimatedCropMenu()
+
 
         cropView.contentFrame = contentFrameCrop()
         cropView.moveCropBoxToAspectFillContentFrame()
