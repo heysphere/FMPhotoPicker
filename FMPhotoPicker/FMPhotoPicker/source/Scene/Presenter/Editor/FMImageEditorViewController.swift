@@ -251,6 +251,7 @@ public class FMImageEditorViewController: UIViewController {
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         cropView.frame = view.frame
+        cropView.contentFrame = contentFrameCrop()
 
         if #available(iOS 11.0, *) {
             bottomMenuContainerBottomConstraint.constant = -view.safeAreaInsets.bottom
